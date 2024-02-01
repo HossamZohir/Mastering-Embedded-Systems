@@ -1,0 +1,182 @@
+/*
+ * main.c
+ *
+ *  Created on: Feb 1, 2024
+ *      Author: Hossam
+ */
+
+
+/*EX1:
+
+Write C Program to Print a Sentence
+i should see the Console as following:
+##########Console-output###
+C Programming
+###########################
+########################################################################*/
+
+#include "stdio.h"
+
+void main()
+{
+	printf("C Programming");
+}
+*****************************************************************************************************************************
+
+/*
+ * main.c
+ *
+ *  Created on: Feb 1, 2024
+ *      Author: Hossam
+ */
+
+
+/*EX2:
+
+Write C Program to Print a Integer Entered by a User
+i should see the Console as following:
+##########Console-output###
+Enter a integer: 25
+You entered: 25
+###########################
+########################################################################*/
+
+#include <stdio.h>
+
+void main() {
+
+    int userInput;
+    printf("Enter an integer: ");
+    fflush(stdout); fflush(stdin);
+    scanf("%d", &userInput);
+    printf("You entered: %d\n", userInput);
+
+}
+********************************************************************************************************************
+/*EX3:
+Write C Program to Add Two Integers
+i should see the Console as following:
+##########Console-output###
+Enter two integers: 12
+11
+Sum: 23
+###########################
+########################################################################*/
+
+#include <stdio.h>
+
+int main() {
+
+    int num1, num2;
+    printf("Enter two integer: ");
+    fflush(stdout); fflush(stdin);
+    scanf("%d\n%d", &num1,&num2);
+    printf("sum: %d\n", num1 + num2);
+
+    return 0;
+
+}
+************************************************************************************************************************
+/*EX4:
+Write C Program to Multiply two Floating Point Numbers
+i should see the Console as following:
+##########Console-output###
+###########################
+Enter two numbers: 2.4
+1.1
+Product: 2.640000
+########################################################################*/
+
+#include <stdio.h>
+
+int main() {
+
+    float num1, num2;
+    printf("Enter two numbers: ");
+    fflush(stdout); fflush(stdin);
+    scanf("%f\n%f", &num1,&num2);
+    printf("product: %f\n", num1 * num2);
+
+    return 0;
+
+}
+****************************************************************************************************************************
+/*EX5:
+Write C Program to Find ASCII Value of a Character
+#########Console_output######
+Enter a character: G
+ASCII value of G = 71
+#############################
+########################################################################*/
+
+#include <stdio.h>
+
+int main() {
+
+    char input1;
+    printf("Enter a character: ");
+    fflush(stdout); fflush(stdin);
+    scanf("%c", &input1);
+    printf("ASCII value of %c = %d\n", input1 , input1);      // iti interview question
+
+    return 0;
+
+}
+********************************************************************************************************************************
+/*EX6:
+Write Source Code to Swap Two Numbers
+#########Console_output######
+Enter value of a: 1.20
+Enter value of b: 2.45
+After swapping, value of a = 2.45
+After swapping, value of b = 1.2
+#############################
+########################################################################*/
+
+#include <stdio.h>
+
+int main() {
+
+	float a,b,temp;
+	printf("Enter value of a: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%f", &a);
+
+	printf("Enter value of b: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%f", &b);
+	temp=a;
+	a=b;
+	b=temp;
+	printf("After swapping, value of a = %0.2f\n", a );
+	printf("After swapping, value of b = %0.1f\n", b );
+
+    return 0;
+
+}
+**************************************************************************************************
+/*EX7:
+it is an interview trick
+Write Source Code to Swap Two Numbers without temp variable.*/
+
+#include <stdio.h>
+
+int main() {
+
+	float a,b,temp;
+	printf("Enter value of a: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%f", &a);
+
+	printf("Enter value of b: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%f", &b);
+	    a = a + b;
+	    b = a - b;
+	    a = a - b;
+	printf("After swapping, value of a = %0.2f\n", a );
+	printf("After swapping, value of b = %0.1f\n", b );
+
+    return 0;
+
+}
