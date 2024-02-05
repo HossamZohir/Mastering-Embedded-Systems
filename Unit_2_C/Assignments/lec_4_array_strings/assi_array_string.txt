@@ -1,0 +1,327 @@
+
+/* HW ARRAY
+ * EX1: ADD 2 ARRAYS 2*2
+ */
+
+#include <stdio.h>
+
+int main() {
+
+	float arr1[2][2];
+	float arr2[2][2];
+	float result[2][2];
+
+	printf("enter elements of first array\n");
+	fflush(stdout); fflush(stdin);
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			printf("enter a%d%d: ",i,j);
+			fflush(stdout); fflush(stdin);
+			scanf("%f",&arr1[i][j]);
+		}
+
+	}
+
+	printf("enter elements of second array\n");
+	fflush(stdout); fflush(stdin);
+
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			printf("enter b%d%d: ",i,j);
+			fflush(stdout); fflush(stdin);
+			scanf("%f",&arr2[i][j]);
+		}
+
+	}
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			result[i][j]=arr1[i][j]+arr2[i][j];
+		}
+	}
+	printf("The sum is:\n");
+	fflush(stdout); fflush(stdin);
+
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			printf("%0.2f  ",result[i][j]);
+			fflush(stdout); fflush(stdin);
+		}
+		printf("\n");
+	}
+
+
+
+	return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+/* HW ARRAY
+ * EX2: insert n numbers and find the average
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	int num;
+	
+	/* using dynamic memory allocation 
+	 is this acceptable in embedded c ?? (i don't think)
+	 to avoid this problem we may use arr1[50] and make the loop based on the number in range */
+
+	float *arr1 = (float *)malloc(num * sizeof(float));
+	float sum=0, average;
+
+
+	printf("enter the number of data: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&num);
+
+	for(int i=0;i<num;i++)
+	{
+		printf("enter number %d : ",i+1);
+		fflush(stdout); fflush(stdin);
+		scanf("%f",&arr1[i]);
+		sum += arr1[i];
+	}
+	average= sum/num;
+
+	printf("The average: %0.2f\n",average);
+	fflush(stdout); fflush(stdin);
+
+	return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* HW ARRAY
+ * EX3: matrix transpose
+ */
+
+#include <stdio.h>
+
+int main() {
+
+	int r,c;
+	float arr1[50][50];
+	float arr2[50][50];
+
+
+	printf("enter rows and columns numbers: \n");
+	fflush(stdout); fflush(stdin);
+	scanf("%d\n%d",&r,&c);
+
+	for(int i=0;i<r;i++)
+	{
+		for(int j=0;j<c;j++)
+		{
+			printf("enter a%d%d: ",i,j);
+			fflush(stdout); fflush(stdin);
+			scanf("%f",&arr1[i][j]);
+			arr2[j][i]=arr1[i][j];
+		}
+
+	}
+
+	printf("The entered matrix :\n");
+	fflush(stdout); fflush(stdin);
+
+	for(int i=0;i<r;i++)
+		{
+			for(int j=0;j<c;j++)
+			{
+				printf("%0.2f  ",arr1[i][j]);
+				fflush(stdout); fflush(stdin);
+			}
+			printf("\n");
+		}
+
+	printf("The transpose is:\n");
+	fflush(stdout); fflush(stdin);
+
+	for(int i=0;i<c;i++)
+	{
+		for(int j=0;j<r;j++)
+		{
+			printf("%0.2f  ",arr2[i][j]);
+			fflush(stdout); fflush(stdin);
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+/* HW ARRAY
+ * EX4: add item to array with specific location*/
+
+#include <stdio.h>
+
+int main() {
+
+	int num,loc,item, arr1[50];
+
+	printf("Enter number of elements: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d\n",&num);
+
+	for(int i=0; i< num ;i++)
+	{
+		scanf("%d",&arr1[i]);
+	}
+
+	printf("\nEnter the element to be inserted: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&item);
+
+	printf("\nEnter the location to be inserted: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&loc);
+
+	for (int i=num; i>=loc ;i--)
+	{
+		arr1[i]=arr1[i - 1];
+	}
+
+	arr1[loc-1]=item;
+
+	for(int i=0;i<num+1;i++)
+		{
+		printf("%d ",arr1[i]);
+		fflush(stdout); fflush(stdin);
+		}
+	return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////////
+/* HW ARRAY
+ * EX5: add item to search element in array */
+
+#include <stdio.h>
+
+int main() {
+
+	int num,search,loc, arr1[50];
+
+	printf("Enter number of elements: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d\n",&num);
+
+	for(int i=0; i< num ;i++)
+	{
+		scanf("%d",&arr1[i]);
+	}
+
+	printf("\nEnter the element to be searched: ");
+	fflush(stdout); fflush(stdin);
+	scanf("%d",&search);
+
+	for(int i=0; i< num ;i++)
+	{
+		if(arr1[i]==search)
+		{
+			loc=i+1;
+		}
+	}
+	printf("\nElement Found in location: %d ",loc);
+	fflush(stdout); fflush(stdin);
+	return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+/* HW strings
+ * EX1: find the frequency of character in string */
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+	char ch, str[50];
+	int i, n=0;
+
+	printf("Enter a string: ");
+	fflush(stdout); fflush(stdin);
+	gets(str);
+
+	printf("Enter character to find frequency: %c",ch);
+	fflush(stdout); fflush(stdin);
+	scanf("%c",&ch);
+
+	for(i=0; str[i]!= '\0';i++)
+	{
+		if(str[i]==ch)
+		{
+			n++;
+		}
+	}
+
+	printf("Frequency of %c is %d",ch,n);
+	fflush(stdout); fflush(stdin);
+
+
+	return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+/* HW strings
+ * EX2: find the length of string */
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+	char str[50];
+	int i, n=0;
+
+	printf("Enter a string: ");
+	fflush(stdout); fflush(stdin);
+	gets(str);
+
+	for(i=0; str[i]!= '\0';i++)
+		{
+			if(str[i]!='\0')
+			{
+				n++;
+			}
+		}
+
+	printf("the size of string is: %d",n);
+	fflush(stdout); fflush(stdin);
+
+	return 0;
+}
+//////////////////////////////////////////////////////////////////////////////////////
+/* HW strings
+ * EX2: find the length of string */
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+
+	char str[50],reversed[50];
+	int i, n=0;
+
+	printf("Enter a string: ");
+	fflush(stdout); fflush(stdin);
+	gets(str);
+	n= strlen(str);
+
+	for (i=0; i<n; i++)
+	{
+		reversed[i] = str[n-i-1];
+	}
+
+	reversed[n] = '\0';
+
+	printf("the reversed is: %s",reversed);
+	fflush(stdout); fflush(stdin);
+
+	return 0;
+}
+####################################################################################################
