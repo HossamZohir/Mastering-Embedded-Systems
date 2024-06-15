@@ -1,0 +1,107 @@
+/* HW functions
+ * EX1: find prime numbers between interval
+ */
+
+#include <stdio.h>
+
+// User-defined function to check if a number is prime
+int isPrime(int num)
+{
+    if (num <= 1)
+        return 0;
+    for (int i = 2; i * i <= num; i++)
+    {
+        if (num % i == 0)
+            return 0;
+    }
+    return 1;
+}
+
+// Main function
+int main()
+{
+    int lower, upper;
+
+    printf("Enter the interval: ");
+    fflush(stdout); fflush(stdin);
+    scanf("%d %d", &lower,&upper);
+
+
+
+    printf("Prime numbers between %d and %d are: ", lower, upper);
+    fflush(stdout); fflush(stdin);
+
+    for (int i = lower; i <= upper; i++)
+    {
+        if (isPrime(i))
+            printf("%d ", i);
+        fflush(stdout); fflush(stdin);
+    }
+
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////
+/* HW functions
+ * EX2: C program that calculates the factorial of a number using recursion
+ */
+
+#include <stdio.h>
+
+// Recursive function to calculate factorial
+int factorial(int n)
+{
+    if (n <= 1) // Base case: factorial of 0 or 1 is 1
+        return 1;
+    else
+        return n * factorial(n - 1); // Recursive case
+}
+
+int main()
+{
+    int num;
+
+    // Input a number from the user
+    printf("Enter a positive integer: ");
+    fflush(stdout); fflush(stdin);
+
+    scanf("%d", &num);
+
+    // Calculate factorial using the recursive function
+    int result = factorial(num);
+
+    // Output the result
+    printf("The factorial of %d is %d\n", num, result);
+    fflush(stdout); fflush(stdin);
+
+
+    return 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+/* HW functions
+ * EX3: C program that reverse a sentence using recursive
+ */
+
+#include <stdio.h>
+
+void reverse() {
+	char s;
+	scanf("%c", &s);
+	if (s != '\n') {
+		reverse();
+		printf("%c", s);
+		fflush(stdout);
+		fflush(stdin);
+	}
+}
+int main() {
+
+	printf("enter the sentence: ");
+	fflush(stdout);
+	fflush(stdin);
+	reverse();
+
+	return 0;
+}
+
+
