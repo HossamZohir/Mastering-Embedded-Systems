@@ -1,0 +1,227 @@
+/* HW structures
+ * EX1: program to store the info of students (name,roll,marks)*/
+
+#include <stdio.h>
+#include <string.h>
+
+struct info
+	{
+		char name[50];
+		int roll ;
+		float marks;
+	};
+
+
+int main() {
+
+	struct info Sinfo[100];
+	int i,n ;
+
+	printf("Enter the number of students:");
+	fflush(stdout);fflush(stdin);
+
+	scanf("%d", &n);
+
+	printf("Enter the info of students\n");
+	fflush(stdout);fflush(stdin);
+
+	for(i=0;i<n;i++)
+	{
+		printf("Enter the name:");
+		fflush(stdout);fflush(stdin);
+		scanf("%[^\n]s", Sinfo[i].name);     //"%[^\n]s" to read string with spaces
+
+		printf("Enter the roll number:");
+		fflush(stdout); fflush(stdin);
+		scanf("%d", &Sinfo[i].roll);
+
+		printf("Enter the mark :");
+		fflush(stdout); fflush(stdin);
+		scanf("%f", &Sinfo[i].marks);
+
+	}
+
+	for(i=0;i<n;i++)
+	{
+		printf("\nInformation of students\n");
+		fflush(stdout);fflush(stdin);
+
+		printf("The name: %s\n",Sinfo[i].name);
+		fflush(stdout);fflush(stdin);
+
+		printf("The roll number: %d\n",Sinfo[i].roll );
+		fflush(stdout); fflush(stdin);
+
+
+		printf("The mark: %0.2f",Sinfo[i].marks );
+		fflush(stdout); fflush(stdin);
+
+
+	}
+
+
+
+	return 0;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* HW structures
+ * EX2: program to add two distances in inch feet*/
+
+#include <stdio.h>
+#include <string.h>
+
+struct length {
+	float inch;
+	float feet;
+};
+
+struct length addlength(struct length Slength[], int n) {
+
+	struct length result ;
+
+	for (int i = 0; i < n; i++) {
+		result.feet += Slength[i].feet;
+		result.inch += Slength[i].inch;
+
+		// Convert inches to feet if inches >= 12
+		if (result.inch >= 12) {
+			result.feet +=(int) result.inch / 12;
+			result.inch =(int) result.inch % 12;
+		}
+	}
+
+	return result;
+}
+
+int main() {
+
+	struct length Slength[50], result;
+	int n;
+
+	printf("Enter the number of measurements:");
+	fflush(stdout);
+	fflush(stdin);
+
+	scanf("%d", &n);
+
+	printf("Enter the measurements\n");
+	fflush(stdout);
+	fflush(stdin);
+
+	for (int i = 0; i < n; i++) {
+		printf("Enter the info of %d distance\n", i + 1);
+		fflush(stdout);
+		fflush(stdin);
+
+		printf("Enter inch:");
+		fflush(stdout);
+		fflush(stdin);
+		scanf("%f", &Slength[i].inch);
+
+		printf("Enter feet:");
+		fflush(stdout);
+		fflush(stdin);
+		scanf("%f", &Slength[i].feet);
+
+	}
+
+	result = addlength(Slength,n);
+	printf("\nThe total distance is: %.2f feet %.2f inches\n", result.feet, result.inch);
+
+	return 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* HW structures
+ * EX3: program to add two complex numbers*/
+
+#include <stdio.h>
+#include <string.h>
+
+struct complex {
+	float real;
+	float imaginary;
+};
+
+struct complex addcomplex (struct complex Scomplex[], int n) {
+
+	struct complex result ;
+
+	for (int i = 0; i < n; i++) {
+		result.real += Scomplex[i].real;
+		result.imaginary += Scomplex[i].imaginary;
+	}
+
+	return result;
+}
+
+int main() {
+
+	struct complex Scomplex[50], result;
+	int n;
+
+	printf("Enter the count of complex number:");
+	fflush(stdout);
+	fflush(stdin);
+
+	scanf("%d", &n);
+
+	printf("Enter the complex numbers\n");
+	fflush(stdout);
+	fflush(stdin);
+
+	for (int i = 0; i < n; i++) {
+		printf("Enter the info of %d complex\n", i + 1);
+		fflush(stdout);
+		fflush(stdin);
+
+		printf("Enter real:");
+		fflush(stdout);
+		fflush(stdin);
+		scanf("%f", &Scomplex[i].real);
+
+		printf("Enter imaginary:");
+		fflush(stdout);
+		fflush(stdin);
+		scanf("%f", &Scomplex[i].imaginary);
+
+	}
+
+	result = addcomplex(Scomplex,n);
+	printf("\nThe sum of complex is: %.2f + %.2fi \n", result.real, result.imaginary);
+	fflush(stdout);
+	fflush(stdin);
+	return 0;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/* HW structures
+ * EX6: size of union and structure*/
+
+#include <stdio.h>
+
+union job{
+	char name[32]; // 32 the size of the union is determined by the size of the largest member
+	float salary;	//4
+	int workn;		//4
+}u;
+
+struct job1{
+	char name[32]; //32   sum is 40
+	float salary;  //4
+	int workn;     //4
+}s;
+
+
+int main() {
+
+	printf("size of union= %d\n",sizeof(u));
+	fflush(stdout);fflush(stdin);
+
+	printf("size of structure= %d",sizeof(s));
+		fflush(stdout);fflush(stdin);
+	return 0;
+}
+
