@@ -1,13 +1,13 @@
 
-Lab 1: Baremetal UART Communication
-Overview
+# Lab 1: Baremetal UART Communication
+# Overview
 This project demonstrates a baremetal software setup for UART communication. The software sends the message:
 ```
 learn-in-depth:<your_Name>
 ```
 over UART. This project is built entirely from scratch without using an IDE, including custom startup code, linker script, and Makefile. The program is run using **QEMU**, an open-source machine emulator, specifically emulating the **ARM926EJ VersatilePB**.
 
-Project Structure
+#Project Structure
 ```
 ├── src/
 │   ├── app.c           # Main application file
