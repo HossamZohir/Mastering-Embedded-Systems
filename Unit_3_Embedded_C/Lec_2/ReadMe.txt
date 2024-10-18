@@ -1,8 +1,7 @@
 
+*Lab 1: Baremetal UART Communication*
 
-Lab 1: Baremetal UART Communication
-
-## Overview
+Overview
 This project demonstrates a baremetal software setup for UART communication. The software sends the message:
 ```
 learn-in-depth:<your_Name>
@@ -12,7 +11,7 @@ over UART. This project is built entirely from scratch without using an IDE, inc
 Project Structure
 ```
 ├── src/
-│   ├── main.c           # Main application file
+│   ├── app.c           # Main application file
 │   ├── uart.c           # UART initialization and communication functions
 │   ├── startup.s        # Startup assembly code
 │   └── Makefile         # Makefile to build the project
@@ -24,16 +23,16 @@ Project Structure
 
 Files Description
 
-1. **src/main.c**: Contains the main function to initialize UART and send the message.
-2. **src/uart.c & include/uart.h**: Defines the functions for UART initialization, configuration, and data transmission.
-3. **src/startup.s**: Provides the low-level initialization, setting up the stack pointer, and calling the main function.
-4. **include/linker.ld**: The linker script defines the memory layout for the ARM926EJ, specifying sections like `.text`, `.data`, `.bss`, and `.rodata`.
-5. **src/Makefile**: Automates the process of compiling and linking the project.
+1. src/app.c: Contains the main function to initialize UART and send the message.
+2. src/uart.c & include/uart.h: Defines the functions for UART initialization, configuration, and data transmission.
+3. src/startup.s: Provides the low-level initialization, setting up the stack pointer, and calling the main function.
+4. include/linker.ld: The linker script defines the memory layout for the ARM926EJ, specifying sections like `.text`, `.data`, `.bss`, and `.rodata`.
+5. src/Makefile: Automates the process of compiling and linking the project.
 
 Prerequisites
 
-- **ARM GCC Compiler**: Ensure that the ARM GCC toolchain is installed (`arm-none-eabi-gcc`, `arm-none-eabi-objcopy`, etc.).
-- **QEMU**: Install QEMU to emulate the ARM926EJ VersatilePB hardware and run the compiled program.
+- ARM GCC Compiler: Ensure that the ARM GCC toolchain is installed (`arm-none-eabi-gcc`, `arm-none-eabi-objcopy`, etc.).
+- QEMU: Install QEMU to emulate the ARM926EJ VersatilePB hardware and run the compiled program.
 
 How to Build and Run
 
@@ -50,7 +49,7 @@ qemu-system-arm -M versatilepb -nographic -kernel build/output.bin
 ```
 The `-nographic` flag enables UART output on the console, allowing you to see the transmitted message.
 
-### Step 3: Clean the Build
+Step 3: Clean the Build
 To remove all build files, use:
 ```bash
 make clean
@@ -61,12 +60,12 @@ Code Explanation
 UART Configuration
 The UART is configured to communicate with a standard baud rate, data frame, and no parity. This allows the ARM926EJ to send the string `"learn-in-depth:<your_Name>"`.
 
-### Memory Layout
+Memory Layout
 The memory layout is defined in `linker.ld`. The key sections include:
-- **.text**: Contains the application code.
-- **.data**: Contains initialized data.
-- **.bss**: Contains uninitialized data.
-- **.rodata**: Contains read-only data, such as string literals.
+- .text: Contains the application code.
+- .data: Contains initialized data.
+- .bss: Contains uninitialized data.
+- .rodata: Contains read-only data, such as string literals.
 
 Example Output
 Upon running the program on QEMU, the following message will be displayed in the terminal:
