@@ -1,5 +1,5 @@
 
-*Lab 1: Baremetal UART Communication*
+_Lab 1: Baremetal UART Communication_
 
 Overview
 This project demonstrates a baremetal software setup for UART communication. The software sends the message:
