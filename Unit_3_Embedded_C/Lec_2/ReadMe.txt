@@ -1,5 +1,5 @@
 Lab 1: Baremetal UART Communication
-# Overview
+Overview
 This project demonstrates a baremetal software setup for UART communication. The software sends the message:
 ```
 learn-in-depth:<your_Name>
