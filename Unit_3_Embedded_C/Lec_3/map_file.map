@@ -9,71 +9,82 @@ sram             0x20000000         0x00005000         xrw
 Linker script and memory map
 
 
-.text           0x08000000      0x128
+.text           0x08000000      0x19c
  *(.vectors*)
  .vectors       0x08000000       0x20 startup.o
                 0x08000000                vectors
  *(.text*)
  .text          0x08000020       0xac main.o
                 0x08000020                main
- .text          0x080000cc       0x54 startup.o
-                0x080000cc                Reset_handler
-                0x080000d8                NMI_handler
-                0x080000e4                Hard_fault_handler
-                0x080000f0                MMF_handler
-                0x080000fc                Bus_Fault_handler
-                0x08000108                Usage_Fault_handler
-                0x08000114                Reserved1
+ .text          0x080000cc       0xc8 startup.o
+                0x080000cc                NMI_handler
+                0x080000cc                Reserved1
+                0x080000cc                Hard_fault_handler
+                0x080000cc                Default_handler
+                0x080000cc                MMF_handler
+                0x080000cc                Usage_Fault_handler
+                0x080000cc                Bus_Fault_handler
+                0x080000d8                Reset_handler
  *(.rodata)
- .rodata        0x08000120        0x8 main.o
-                0x08000120                arr2
+ .rodata        0x08000194        0x8 main.o
+                0x08000194                arr2
+                0x0800019c                _E_text = .
 
-.glue_7         0x08000128        0x0
+.glue_7         0x0800019c        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x08000128        0x0
+.glue_7t        0x0800019c        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x08000128        0x0
+.vfp11_veneer   0x0800019c        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08000128        0x0
+.v4_bx          0x0800019c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08000128        0x0
+.iplt           0x0800019c        0x0
  .iplt          0x00000000        0x0 main.o
 
-.rel.dyn        0x08000128        0x0
+.rel.dyn        0x0800019c        0x0
  .rel.iplt      0x00000000        0x0 main.o
 
-.data           0x08000128        0x8
+.data           0x20000000        0x8 load address 0x0800019c
+                0x20000000                _S_data = .
  *(.data)
- .data          0x08000128        0x8 main.o
-                0x08000128                arr1
- .data          0x08000130        0x0 startup.o
+ .data          0x20000000        0x8 main.o
+                0x20000000                arr1
+ .data          0x20000008        0x0 startup.o
+                0x20000008                _E_data = .
 
-.igot.plt       0x08000130        0x0
+.igot.plt       0x20000008        0x0 load address 0x080001a4
  .igot.plt      0x00000000        0x0 main.o
 
-.bss            0x20000000        0x0
- *(.bss)
- .bss           0x20000000        0x0 main.o
- .bss           0x20000000        0x0 startup.o
+.bss            0x20000008     0x1000 load address 0x080001a4
+                0x20000008                _S_bss = .
+ *(.bss*)
+ .bss           0x20000008        0x0 main.o
+ .bss           0x20000008        0x0 startup.o
+                0x20000008                . = ALIGN (0x4)
+                0x20000008                _E_bss = .
+                0x20000008                . = ALIGN (0x4)
+                0x20001008                . = (. + 0x1000)
+ *fill*         0x20000008     0x1000 
+                0x20001008                _stack_top = .
 LOAD main.o
 LOAD startup.o
 OUTPUT(learn-in-depth-cortex-m3.elf elf32-littlearm)
 
-.debug_info     0x00000000      0x23d
+.debug_info     0x00000000      0x289
  .debug_info    0x00000000      0x103 main.o
- .debug_info    0x00000103      0x13a startup.o
+ .debug_info    0x00000103      0x186 startup.o
 
-.debug_abbrev   0x00000000      0x103
+.debug_abbrev   0x00000000      0x160
  .debug_abbrev  0x00000000       0x9c main.o
- .debug_abbrev  0x0000009c       0x67 startup.o
+ .debug_abbrev  0x0000009c       0xc4 startup.o
 
-.debug_loc      0x00000000      0x16c
+.debug_loc      0x00000000       0x9c
  .debug_loc     0x00000000       0x38 main.o
- .debug_loc     0x00000038      0x134 startup.o
+ .debug_loc     0x00000038       0x64 startup.o
 
 .debug_aranges  0x00000000       0x40
  .debug_aranges
@@ -81,15 +92,15 @@ OUTPUT(learn-in-depth-cortex-m3.elf elf32-littlearm)
  .debug_aranges
                 0x00000020       0x20 startup.o
 
-.debug_line     0x00000000       0xc9
+.debug_line     0x00000000       0xe5
  .debug_line    0x00000000       0x6a main.o
- .debug_line    0x0000006a       0x5f startup.o
+ .debug_line    0x0000006a       0x7b startup.o
 
-.debug_str      0x00000000      0x147
+.debug_str      0x00000000      0x153
  .debug_str     0x00000000       0xc5 main.o
                                  0xec (size before relaxing)
- .debug_str     0x000000c5       0x82 startup.o
-                                0x148 (size before relaxing)
+ .debug_str     0x000000c5       0x8e startup.o
+                                0x15a (size before relaxing)
 
 .comment        0x00000000       0x11
  .comment       0x00000000       0x11 main.o
@@ -103,6 +114,6 @@ OUTPUT(learn-in-depth-cortex-m3.elf elf32-littlearm)
  .ARM.attributes
                 0x00000033       0x33 startup.o
 
-.debug_frame    0x00000000      0x100
+.debug_frame    0x00000000       0x78
  .debug_frame   0x00000000       0x2c main.o
- .debug_frame   0x0000002c       0xd4 startup.o
+ .debug_frame   0x0000002c       0x4c startup.o

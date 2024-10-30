@@ -11,15 +11,28 @@ SECTIONS
 		*(.vectors*)                              /* Vector table goes in the .text section (typically first) */
 		*(.text*)                                 /* Code (.text) section */
 		*(.rodata)                                /* Read-only data section (.rodata) */
+		_E_text = . ;
+	
 	}> flash                                      /* Place all of these in flash memory */
 	
 	.data :                                       /* Initialized data section */
 	{
+		_S_data = . ;
 		*(.data)                                  /* Initialized variables */
-	}> flash                                      /* Initialized data is loaded into flash*/
+		_E_data = . ;
+	
+	}> sram AT> flash                             /* Initialized data is loaded into flash then copy in ram at run time*/
 	
 	.bss :                                        /* Uninitialized data section */
 	{
-		*(.bss)                                   /* Uninitialized variables */
+		_S_bss = . ;
+		*(.bss*)                                  /* Uninitialized variables */
+		. = ALIGN(4);
+		_E_bss = . ;
+		
+		. = ALIGN(4);
+		. = . +0x1000;
+		_stack_top = . ;
+		
 	}> sram                                       /* Place uninitialized data in SRAM */
 }
