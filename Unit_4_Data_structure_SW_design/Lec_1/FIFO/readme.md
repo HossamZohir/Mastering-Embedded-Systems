@@ -18,7 +18,15 @@ This project implements a First In, First Out (FIFO) data structure in C. It all
      - `FIFO_No_Error` on success.
      - `FIFO_Null` if the buffer is invalid.
 
-2. **`FIFO_Add_item`**
+2. **`FIFO_is_full`**
+   - Checks if the FIFO is full.
+   - **Parameters**:
+     - Pointer to `FIFO_Buf_t` structure.
+   - **Returns**:
+     - `FIFO_Full` if full.
+     - `FIFO_No_Error` otherwise.
+   
+3. **`FIFO_Enqueue`**
    - Adds an item to the FIFO.
    - **Parameters**:
      - Pointer to `FIFO_Buf_t` structure.
@@ -28,7 +36,7 @@ This project implements a First In, First Out (FIFO) data structure in C. It all
      - `FIFO_Full` if the FIFO is full.
      - `FIFO_Null` if the FIFO is invalid.
 
-3. **`FIFO_Get_item`**
+4. **`FIFO_Dequeue`**
    - Retrieves the first item added to the FIFO.
    - **Parameters**:
      - Pointer to `FIFO_Buf_t` structure.
@@ -38,20 +46,16 @@ This project implements a First In, First Out (FIFO) data structure in C. It all
      - `FIFO_Empty` if the FIFO is empty.
      - `FIFO_Null` if the FIFO is invalid.
 
-4. **`FIFO_is_full`**
-   - Checks if the FIFO is full.
-   - **Returns**:
-     - `FIFO_Full` if full.
-     - `FIFO_No_Error` otherwise.
-
 5. **`FIFO_Print`**
    - Prints all elements in the FIFO for debugging.
+   - **Parameters**:
+     - Pointer to `FIFO_Buf_t` structure.
 
 ## Usage
 1. Define a buffer array and a `FIFO_Buf_t` structure.
 2. Initialize the FIFO using `FIFO_Init`.
-3. Add items using `FIFO_Add_item`.
-4. Retrieve items using `FIFO_Get_item`.
+3. Add items using `FIFO_Enqueue`.
+4. Retrieve items using `FIFO_Dequeue`.
 
 ## Example
 ```c
@@ -71,7 +75,7 @@ int main()
 
     // Add items to the FIFO
     for (uint32_t i = 0; i < 5; i++) {
-        if (FIFO_Add_item(&myFIFO, &i) == FIFO_No_Error)
+        if (FIFO_Enqueue(&myFIFO, &i) == FIFO_No_Error)
             printf("Added: %d\n", i);
         else
             printf("FIFO is Full\n");
@@ -83,7 +87,7 @@ int main()
     // Retrieve items from the FIFO
     uint32_t item;
     for (uint32_t i = 0; i < 5; i++) {
-        if (FIFO_Get_item(&myFIFO, &item) == FIFO_No_Error)
+        if (FIFO_Dequeue(&myFIFO, &item) == FIFO_No_Error)
             printf("Retrieved: %d\n", item);
         else
             printf("FIFO is Empty\n");
