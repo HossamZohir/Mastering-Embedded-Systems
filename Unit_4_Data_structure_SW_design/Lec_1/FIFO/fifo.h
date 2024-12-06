@@ -62,7 +62,7 @@ FIFO_Status_t FIFO_Init(FIFO_Buf_t* FIFO_Buf, FIFO_element_type* buffer, FIFO_el
 
 //=================================================================================================
 /**
- * @brief Adds an item to the FIFO buffer.
+ * @brief Adds an item "enqueue" to the FIFO buffer.
  *
  * @param FIFO_Buf Pointer to the FIFO buffer structure.
  * @param item Pointer to the item to be added to the FIFO.
@@ -78,7 +78,7 @@ FIFO_Status_t FIFO_Enqueue(FIFO_Buf_t* FIFO_Buf, FIFO_element_type* item);
 
 //=================================================================================================
 /**
- * @brief Removes an item from the FIFO buffer.
+ * @brief gets an item "dequeue" from the FIFO buffer.
  *
  * @param FIFO_Buf Pointer to the FIFO buffer structure.
  * @param item Pointer to a variable where the dequeued item will be stored.
