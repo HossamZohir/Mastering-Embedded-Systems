@@ -1,4 +1,4 @@
-# 🚀 Embedded System Project with Modular State Machines
+# 🚀 Pressure Alert Project with Modular State Machines
 
 This repository contains a fully modular Embedded C project designed using a state-machine-based architecture. The project includes comprehensive analysis, design diagrams, source code modules, simulation results, and software memory analysis.
 
