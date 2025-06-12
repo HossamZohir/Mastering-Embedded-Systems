@@ -39,13 +39,3 @@ This repository contains a fully modular Embedded C project designed using a sta
 - Section Tables for memory layout and performance evaluation
 
 ---
-
-## 🛠️ How to Build
-
-```bash
-# Clone the repository
-git clone https://github.com/your_username/your_repository.git
-cd your_repository
-
-# Build the project
-make
